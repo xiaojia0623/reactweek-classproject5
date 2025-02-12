@@ -301,76 +301,76 @@ const checkout = async(data) => {
           </div>
           
           <div className="col-5" id="list"> {/* 右邊區塊 */}
-          {cart.carts?.length > 0 ? (
-            <div>
-              <div className="text-end py-3">
-                <button onClick={removeCart} className="btn btn-outline-danger" type="button">
-                  清空購物車
-                </button>
-              </div>
+            {cart.carts?.length > 0 ? (
+              <div>
+                <div className="text-end py-3">
+                  <button onClick={removeCart} className="btn btn-outline-danger" type="button">
+                    清空購物車
+                  </button>
+                </div>
 
-              <table className="table align-middle">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>品名</th>
-                    <th style={{ width: "150px" }}>數量/單位</th>
-                    <th className="text-end">單價</th>
-                  </tr>
-                </thead>
+                <table className="table align-middle">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>品名</th>
+                      <th style={{ width: "150px" }}>數量/單位</th>
+                      <th className="text-end">單價</th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                {cart.carts?.map((cartItem) => (
-                  <tr key={cartItem.id}>
-                    <td>
-                      <button onClick={()=> removeCartItem(cartItem.id)} type="button" className="btn btn-outline-danger btn-sm">
-                      x
-                      </button>
-                    </td>
-                    <td>{cartItem.product.title}</td>
-                    <td style={{ width: "150px" }}>
-                      <div className="d-flex align-items-center">
-                        <div className="btn-group me-2" role="group">
-                          <button
-                            onClick={() => cartItemProduct(cartItem.id, cartItem.product_id, cartItem.qty - 1)}
-                            type="button"
-                            disabled={cartItem.qty === 1}
-                            className="btn btn-outline-dark btn-sm"
-                          >
-                            -
-                          </button>
-                          <span
-                            className="btn border border-dark"
-                            style={{ width: "50px", cursor: "auto" }}
-                          >{cartItem.qty}</span>
-                          <button
-                            onClick={() => cartItemProduct(cartItem.id, cartItem.product_id, cartItem.qty + 1)}
-                            type="button"
-                            className="btn btn-outline-dark btn-sm"
-                          >
-                            +
-                          </button>
+                  <tbody>
+                  {cart.carts?.map((cartItem) => (
+                    <tr key={cartItem.id}>
+                      <td>
+                        <button onClick={()=> removeCartItem(cartItem.id)} type="button" className="btn btn-outline-danger btn-sm">
+                        x
+                        </button>
+                      </td>
+                      <td>{cartItem.product.title}</td>
+                      <td style={{ width: "150px" }}>
+                        <div className="d-flex align-items-center">
+                          <div className="btn-group me-2" role="group">
+                            <button
+                              onClick={() => cartItemProduct(cartItem.id, cartItem.product_id, cartItem.qty - 1)}
+                              type="button"
+                              disabled={cartItem.qty === 1}
+                              className="btn btn-outline-dark btn-sm"
+                            >
+                              -
+                            </button>
+                            <span
+                              className="btn border border-dark"
+                              style={{ width: "50px", cursor: "auto" }}
+                            >{cartItem.qty}</span>
+                            <button
+                              onClick={() => cartItemProduct(cartItem.id, cartItem.product_id, cartItem.qty + 1)}
+                              type="button"
+                              className="btn btn-outline-dark btn-sm"
+                            >
+                              +
+                            </button>
+                          </div>
+                          <span className="input-group-text bg-transparent border-0">
+                            {cartItem.product.unit}
+                          </span>
                         </div>
-                        <span className="input-group-text bg-transparent border-0">
-                          {cartItem.product.unit}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="text-end">{cartItem.total}</td>
-                  </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colSpan="3" className="text-end">
-                      總計：
-                    </td>
-                    <td className="text-end" style={{ width: "130px" }}>{cart.total}</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          ) : <CartEmpty/> }
+                      </td>
+                      <td className="text-end">{cartItem.total}</td>
+                    </tr>
+                    ))}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colSpan="3" className="text-end">
+                        總計：
+                      </td>
+                      <td className="text-end" style={{ width: "130px" }}>{cart.total}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            ) : <CartEmpty/> }
           </div>
         </div>
       </div>
